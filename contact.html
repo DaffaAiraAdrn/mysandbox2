@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Page</title>
+  <link rel="stylesheet" href="global_style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul class="navigationBar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <h1 class="judulHal">Contact</h1>
+    <h3>Get in Touch with Me</h3>
+    
+  </header>
+
+  <main>
+    <h2 class="Connect">Connect With Me:</h2>
+    <ul class="daftarKontak"> 
+      <li><a href="mailto:2411531006_daffa@student.unand.ac.id">Email: 2411531006_daffa@student.unand.ac.id</a></li>
+      <li>Whatsapp: <a href="https://wa.me/6285722727237" target="_blank" rel="noopener">085722727237</a></li>
+      <li><a href="https://discord.com/users/sierra118_" target="_blank" rel="noopener">Add me on Discord</a></li>
+    </ul>
+
+    <h2 class="h2Class">Send a Message:</h2>
+    <form id="kontakForm">
+      <label>Nama:</label>
+      <input type="text" placeholder="Masukkan nama anda" required>
+      <label>Email:</label>
+      <input type="email"
+        placeholder="Masukkan email anda" pattern="[a-zA-Z0-9._%+-]+@gmail.com" 
+        required oninvalid="this.setCustomValidity('Hanya email Gmail yang diperbolehkan!')"
+        oninput="this.setCustomValidity('')">
+      <label>Kategori Pesan:</label>
+      <select  required>
+        <option value="">Pilih kategori</option>
+        <option value="pertanyaan">Pertanyaan</option>
+        <option value="saran">Saran</option>
+        <option value="masalah">Masalah</option>
+      </select>
+
+      <label >Pesan:</label>
+      <textarea  placeholder="Tulis pesan anda..." required></textarea>
+
+      
+      <p>Apakah ingin menerima balasan?</p>
+      <div class="tombol">
+        <div class="tombolOption">
+          <input type="radio"required>
+          <label>Ya</label>
+
+
+
+        </div>
+        <div class="tombolOption">
+          <input type="radio">
+          <label>Tidak</label>
+        </div>
+      </div>
+      
+
+
+      <button type="submit">Kirim</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 DaffaAiraAdrin</p>
+  </footer>
+
+  <script>
+  document.getElementById("kontakForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    alert("Form berhasil dikirim");
+    this.reset();
+  });
+  </script>
+  <script>
+        if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("service-worker.js")
+            .then(reg => console.log("Service Worker registered:", reg.scope))
+            .catch(err => console.log("Service Worker failed:", err));
+        });
+        }
+  </script>
+
+  
+    <script>
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        const installBtn = document.createElement('button');
+        installBtn.innerText = "Install App";
+        installBtn.style.position = "fixed";
+        installBtn.style.bottom = "20px";
+        installBtn.style.right = "20px";
+        installBtn.style.padding = "10px 20px";
+        installBtn.style.background = "skyblue";
+        installBtn.style.color = "white";
+        installBtn.style.border = "none";
+        installBtn.style.borderRadius = "5px";
+        document.body.appendChild(installBtn);
+
+        installBtn.addEventListener('click', () => {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then(choice => {
+            if (choice.outcome === 'accepted') {
+                console.log("User accepted install");
+            }
+            deferredPrompt = null;
+            installBtn.remove();
+            });
+        });
+        });
+    </script>
+
+</body>
+</html>
