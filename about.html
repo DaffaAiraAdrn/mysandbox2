@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../global_style.css">
+    <title>About Page</title>
+</head>
+<body>
+    <header>
+        <h1>About Me</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <h2>Halo, saya Daffa Aira Adrin</h2>
+            <P>Saya adalah seorang mahasiswa Jurusan Informatika Universitas Andalas.</P>
+            <p>Beberapa hal mengenai diri saya pribadi, saya lahir di Bandung, pada 1 November 2005.</p>
+            <p>Pada saat ini, ada beberapa bidang yang saya tekuni, diantaranya:</p>
+            <section class="pwa-benefits">
+                <h3>Bidang yang Ditekuni</h3>
+                <div class="benefit-list">
+                    <div class="benefit-item">
+                    <h4>3D Modelling</h4>
+                    </div>
+                    <div class="benefit-item">
+                    <h4>Deep Learning</h4>
+                    </div>
+                    <div class="benefit-item">
+                    <h4>Programming</h4>
+                    </div>
+                </div>
+            </section>
+            <p>Untuk sekarang mungkin belum banyak yang saya bisa masukkan ke dalam website ini, tetapi Insya Allah dengan berjalannya waktu, website ini akan berubah menjadi hal yang indah, dan enak dibaca bagi para pengunjung.</p>
+        </article>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2025 DaffaAiraAdrin</p>
+    </footer>
+    <script>
+        if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("service-worker.js")
+            .then(reg => console.log("Service Worker registered:", reg.scope))
+            .catch(err => console.log("Service Worker failed:", err));
+        });
+        }
+    </script>
+
+  
+    <script>
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        const installBtn = document.createElement('button');
+        installBtn.innerText = "Install App";
+        installBtn.style.position = "fixed";
+        installBtn.style.bottom = "20px";
+        installBtn.style.right = "20px";
+        installBtn.style.padding = "10px 20px";
+        installBtn.style.background = "skyblue";
+        installBtn.style.color = "white";
+        installBtn.style.border = "none";
+        installBtn.style.borderRadius = "5px";
+        document.body.appendChild(installBtn);
+
+        installBtn.addEventListener('click', () => {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then(choice => {
+            if (choice.outcome === 'accepted') {
+                console.log("User accepted install");
+            }
+            deferredPrompt = null;
+            installBtn.remove();
+            });
+        });
+        });
+    </script>
+    
+</body>
+</html>
+    
