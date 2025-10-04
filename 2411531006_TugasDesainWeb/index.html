@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Page</title>
+  <link rel="manifest" href="/2411531006_TugasDesainWeb/manifest.json">
+  <link rel="stylesheet" href="/2411531006_TugasDesainWeb/global_style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav class="navbar" role="navigation">
+      <button class="install-button" id="installAppBtn">📲 Install </button>
+      <ul class="navigationBar">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <h1>Welcome to My Little Sandbox</h1>
+    <h4>Going PWA.....Offline Made Easy</h4>
+  </header>
+
+  <main>
+    <article>
+      <h2>Deskripsi</h2>
+      <p>
+        Ini adalah website dimana Insya Allah saya akan isi dengan milestone-milestone, serta portofolio mengenai bidang yang saya tekuni.
+      </p>
+
+      <div class="pwa-info">
+        <h3>Apa itu PWA?</h3>
+        <p>
+          PWA (Progressive Web App) adalah teknologi web modern yang menggabungkan keunggulan situs web dan aplikasi mobile.
+          Dengan PWA, pengguna dapat mengakses situs ini bahkan tanpa koneksi internet, menginstalnya ke layar utama seperti aplikasi,
+          serta mendapatkan performa cepat dan responsif.
+        </p>
+      </div>
+      <section class="pwa-benefits">
+        <h3>Keunggulan PWA</h3>
+        <div class="benefit-list">
+            <div class="benefit-item">
+            <h4>⚡ Cepat dan Responsif</h4>
+            <p>PWA memuat halaman dengan cepat berkat caching cerdas, memberikan pengalaman layaknya aplikasi native.</p>
+            </div>
+            <div class="benefit-item">
+            <h4>📱 Dapat Diinstal</h4>
+            <p>Pengguna dapat menambahkan website ke layar utama tanpa melalui Play Store atau App Store.</p>
+            </div>
+            <div class="benefit-item">
+            <h4>🌐 Dapat Diakses Offline</h4>
+            <p>Dengan dukungan Service Worker, PWA dapat berjalan bahkan tanpa koneksi internet.</p>
+            </div>
+        </div>
+        </section>
+
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 DaffaAiraAdrin</p>
+  </footer>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/2411531006_TugasDesainWeb/service-worker.js")
+        .then(reg => console.log("Service Worker registered:", reg.scope))
+        .catch(err => console.log("Service Worker failed:", err));
+      });
+    }
+  </script>
+
+    <script>
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        const installBtn = document.createElement('button');
+        document.body.appendChild(installBtn);
+
+        installBtn.addEventListener('click', () => {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then(choice => {
+            if (choice.outcome === 'accepted') {
+                console.log("User accepted install");
+            }
+            deferredPrompt = null;
+            installBtn.remove();
+            });
+        });
+        });
+    </script>
+
+  </script>
+</body>
+</html>
